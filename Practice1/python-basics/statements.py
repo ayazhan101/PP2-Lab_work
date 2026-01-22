@@ -1,0 +1,1 @@
+print("Hello"); print("Zhibek"); print("Good luck!")
