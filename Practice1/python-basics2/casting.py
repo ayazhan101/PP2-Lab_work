@@ -1,0 +1,6 @@
+x=int("11")
+y=float(3)
+z=str(21)
+print(x)
+print(y)
+print(z)
