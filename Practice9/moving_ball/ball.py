@@ -1,60 +1,33 @@
 import pygame
-import sys
 
-# Initialize pygame
-pygame.init()
 
-# Screen settings
-WIDTH, HEIGHT = 800, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Moving Red Ball")
+class Ball:
+    def __init__(self, x, y, radius, screen_width, screen_height):
+        self.x = x
+        self.y = y
+        self.radius = radius
 
-# Colors
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
+        self.screen_width = screen_width
+        self.screen_height = screen_height
 
-# Ball properties
-radius = 25
-x = WIDTH // 2
-y = HEIGHT // 2
-move_step = 20
+        self.color = (255, 0, 0)  
+        self.speed = 20  # шаг движения
 
-# Clock for FPS
-clock = pygame.time.Clock()
-FPS = 60
+    def draw(self, screen):
+        pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
 
-# Game loop
-running = True
-while running:
-    screen.fill(WHITE)
+    def move_up(self):
+        if self.y - self.radius - self.speed >= 0:
+            self.y -= self.speed
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    def move_down(self):
+        if self.y + self.radius + self.speed <= self.screen_height:
+            self.y += self.speed
 
-        # Handle key press
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                if x - move_step - radius >= 0:
-                    x -= move_step
+    def move_left(self):
+        if self.x - self.radius - self.speed >= 0:
+            self.x -= self.speed
 
-            elif event.key == pygame.K_RIGHT:
-                if x + move_step + radius <= WIDTH:
-                    x += move_step
-
-            elif event.key == pygame.K_UP:
-                if y - move_step - radius >= 0:
-                    y -= move_step
-
-            elif event.key == pygame.K_DOWN:
-                if y + move_step + radius <= HEIGHT:
-                    y += move_step
-
-    # Draw ball
-    pygame.draw.circle(screen, RED, (x, y), radius)
-
-    pygame.display.flip()
-    clock.tick(FPS)
-
-pygame.quit()
-sys.exit()
+    def move_right(self):
+        if self.x + self.radius + self.speed <= self.screen_width:
+            self.x += self.speed
