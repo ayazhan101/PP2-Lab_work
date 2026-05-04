@@ -5,6 +5,6 @@ This repository contains laboratory works for the PP2 course.
 Practice1
 
 # Author
-Zh.Zhibek
+Zh.Ayazhan
 
 
